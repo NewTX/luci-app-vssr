@@ -24,6 +24,27 @@ LUCI_DEPENDS:=+ipset +ip-full +iptables-mod-tproxy +dnsmasq-full +coreutils +cor
 	+PACKAGE_$(PKG_NAME)_INCLUDE_ShadowsocksR_Libev_Server:shadowsocksr-libev-ssr-server \
 	+PACKAGE_$(PKG_NAME)_INCLUDE_Hysteria:hysteria
 
+
+
+
+define Package/luci-app-vssr
+ 	SECTION:=luci
+	CATEGORY:=LuCI
+	SUBMENU:=3. Applications
+	TITLE:=A New SS/SSR/Xray/Trojan LuCI interface
+	PKGARCH:=all
+	DEPENDS:=+ipset +ip-full +iptables-mod-tproxy +dnsmasq-full +coreutils +coreutils-base64 +bash +pdnsd-alt +wget-ssl +lua +luasocket +lua-maxminddb \
+			+shadowsocks-libev-ss-local +shadowsocks-libev-ss-redir +shadowsocksr-libev-ssr-local +shadowsocksr-libev-ssr-redir +shadowsocksr-libev-ssr-check +simple-obfs \
+			+PACKAGE_$(PKG_NAME)_INCLUDE_Xray:xray-core \
+			+PACKAGE_$(PKG_NAME)_INCLUDE_Trojan:trojan \
+			+PACKAGE_$(PKG_NAME)_INCLUDE_Trojan:ipt2socks \
+			+PACKAGE_$(PKG_NAME)_INCLUDE_Kcptun:kcptun-client \
+			+PACKAGE_$(PKG_NAME)_INCLUDE_Xray_plugin:xray-plugin \
+			+PACKAGE_$(PKG_NAME)_INCLUDE_ShadowsocksR_Libev_Server:shadowsocksr-libev-ssr-server
+endef
+
+
+
 define Package/$(PKG_NAME)/config
 config PACKAGE_$(PKG_NAME)_INCLUDE_Xray
 	bool "Include Xray"
